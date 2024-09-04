@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Staff</title>
+    <!-- Bootstrap CSS for styling -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #00838f;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+        .btn-primary:hover {
+            background-color: #006064;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .form-control {
+            border-radius: 50px;
+            border-color: #00838f;
+        }
+        .form-control:focus {
+            border-color: #004d40;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        .alert {
+            border-radius: 8px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Staff</h2>
+
+        <!-- Display flashed messages if any -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Edit Form -->
+        <form method="POST">
+            <div class="form-group">
+                <label for="staff_id">Staff ID:</label>
+                <input type="number" class="form-control" id="staff_id" name="staff_id" value="{{ staff_id }}" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Staff Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ Staff_Name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="nationality">Staff Nationality:</label>
+                <select class="form-control" id="nationality" name="nationality" required>
+                    <option value="USA" {% if Staff_Nationality == 'USA' %}selected{% endif %}>USA</option>
+                    <option value="UK" {% if Staff_Nationality == 'UK' %}selected{% endif %}>UK</option>
+                    <option value="Canada" {% if Staff_Nationality == 'Canada' %}selected{% endif %}>Canada</option>
+                    <option value="Australia" {% if Staff_Nationality == 'Australia' %}selected{% endif %}>Australia</option>
+                    <!-- Add more nationalities as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="email">Staff Email:</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ Staff_Email_Id }}" required>
+            </div>
+            <div class="form-group">
+                <label for="hire_date">Hire Date:</label>
+                <input type="date" class="form-control" id="hire_date" name="hire_date" value="{{ Hire_Date }}" required>
+            </div>
+            <div class="form-group">
+                <label for="annual_leaves">No. of Annual Leaves:</label>
+                <input type="number" class="form-control" id="annual_leaves" name="annual_leaves" value="{{ No_Annual_Leaves }}" required>
+            </div>
+            <div class="form-group">
+                <label for="designation">Designation:</label>
+                <select class="form-control" id="designation" name="designation" required>
+                    <option value="1" {% if Designation == 'Pilot' %}selected{% endif %}>Pilot</option>
+                    <option value="2" {% if Designation == 'Co-Pilot' %}selected{% endif %}>Co-Pilot</option>
+                    <option value="3" {% if Designation == 'Stewardess/Steward' %}selected{% endif %}>Stewardess/Steward</option>
+                    <option value="4" {% if Designation == 'Ground Staff' %}selected{% endif %}>Ground Staff</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" name="update_staff">Update Staff</button>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

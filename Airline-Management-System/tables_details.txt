@@ -1,0 +1,82 @@
+1) Staff_Deatils TABLE
+~~~~~~~~~~~~~~~~~~~
+
+CREATE TABLE COMMAND
+
+mysql>  create table Staff_Details (Staff_Id int(10) not null primary key ,  Staff_Name varchar(100) , Staff_Nationality varchar(50) , Staff_Email_Id varchar(50) , Designation varchar(50) , Hire_Date date , Employment_Duration int(10) , Seniority_Level varchar(50) ,  Monthly_Salary int(10) , No_Annual_Leaves int(10));
+Query OK, 0 rows affected, 4 warnings (0.15 sec)
+
+DESCRIBE COMMAND
+
+mysql> desc Staff_Details;
++---------------------+--------------+------+-----+---------+-------+
+| Field               | Type         | Null | Key | Default | Extra |
++---------------------+--------------+------+-----+---------+-------+
+| Staff_Id            | int          | NO   | PRI | NULL    |       |
+| Staff_Name          | varchar(100) | YES  |     | NULL    |       |
+| Staff_Nationality   | varchar(50)  | YES  |     | NULL    |       |
+| Staff_Email_Id      | varchar(50)  | YES  |     | NULL    |       |
+| Designation         | varchar(50)  | YES  |     | NULL    |       |
+| Hire_Date           | date         | YES  |     | NULL    |       |
+| Employment_Duration | int          | YES  |     | NULL    |       |
+| Seniority_Level     | varchar(50)  | YES  |     | NULL    |       |
+| Monthly_Salary      | int          | YES  |     | NULL    |       |
+| No_Annual_Leaves    | int          | YES  |     | NULL    |       |
++---------------------+--------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+2) Aircraft_Details TABLE
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CREATE TABLE COMMAND
+
+mysql> create table Aircraft_Details (Aircraft_Id int(10) ,  Aircraft_Type varchar(10) ,  Manufacturing_Company varchar(50) , Seating_Capacity int(5),  Hours_Flown decimal(10,2) ,  Last_Service_Date date , Next_Service_Date date);
+Query OK, 0 rows affected, 2 warnings (0.06 sec)
+
+DECRIBE COMMAND
+
+mysql> desc Aircraft_Details;
++-----------------------+---------------+------+-----+---------+-------+
+| Field                 | Type          | Null | Key | Default | Extra |
++-----------------------+---------------+------+-----+---------+-------+
+| Aircraft_Id           | int           | YES  |     | NULL    |       |
+| Aircraft_Type         | varchar(10)   | YES  |     | NULL    |       |
+| Manufacturing_Company | varchar(50)   | YES  |     | NULL    |       |
+| Seating_Capacity      | int           | YES  |     | NULL    |       |
+| Hours_Flown           | decimal(10,2) | YES  |     | NULL    |       |
+| Last_Service_Date     | date          | YES  |     | NULL    |       |
+| Next_Service_Date     | date          | YES  |     | NULL    |       |
++-----------------------+---------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+3) Journey_log Table
+~~~~~~~~~~~~~~~~~~~~~
+
+CREATE TABLE COMMAND
+
+mysql> CREATE TABLE Journey_Log (
+    ->     Log_Id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     Aircraft_Id INT,
+    ->     Flight_Date DATE,
+    ->     Departure_Airport VARCHAR(255),
+    ->     Arrival_Airport VARCHAR(255),
+    ->     Flight_Duration FLOAT,
+    ->     Pilot_Name VARCHAR(255),
+    ->     FOREIGN KEY (Aircraft_Id) REFERENCES Aircraft_Details(Aircraft_Id)
+    -> );
+
+DESCRIBE COMMAND
+
+mysql> desc Journey_Log;
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+| Log_Id            | int          | NO   | PRI | NULL    | auto_increment |
+| Aircraft_Id       | int          | YES  | MUL | NULL    |                |
+| Flight_Date       | date         | YES  |     | NULL    |                |
+| Departure_Airport | varchar(255) | YES  |     | NULL    |                |
+| Arrival_Airport   | varchar(255) | YES  |     | NULL    |                |
+| Flight_Duration   | float        | YES  |     | NULL    |                |
+| Pilot_Name        | varchar(255) | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.03 sec)

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Bootstrap CSS for styling -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS for additional styling -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 3em;
+            color: #006064;
+            animation: fadeIn 2s ease-in;
+        }
+        .container {
+            text-align: center;
+        }
+        .btn {
+            border-radius: 50px;
+            font-size: 1.1em;
+            padding: 15px 30px;
+            margin: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #00838f;
+            border: none;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover {
+            background-color: #006064;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        .btn-primary .fa {
+            margin-right: 8px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .section {
+            display: none;
+            margin-top: 20px;
+        }
+        .section.active {
+            display: block;
+        }
+        .nav-list {
+            list-style: none;
+            padding: 0;
+        }
+        .nav-list li {
+            display: inline-block;
+            margin: 10px;
+        }
+        .description {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(function(section) {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Airline Management System</h1>
+        
+
+        <div>
+            <button class="btn btn-primary" onclick="showSection('staff-section')"><i class="fas fa-user"></i>Staff</button>
+            <button class="btn btn-primary" onclick="showSection('aircraft-section')"><i class="fas fa-plane"></i>Aircraft</button>
+            <button class="btn btn-primary" onclick="showSection('journey-log-section')"><i class="fas fa-book"></i>Journey Log</button>
+        </div>
+
+        <div id="staff-section" class="section">
+            <h2>Staff Management</h2>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('add_staff') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i>Add Staff</a></li>
+                    <li><a href="{{ url_for('search_staff') }}" class="btn btn-primary"><i class="fas fa-search"></i>Search Staff</a></li>
+                    <li><a href="{{ url_for('delete_staff') }}" class="btn btn-primary"><i class="fas fa-trash-alt"></i>Delete Staff</a></li>
+                    <li><a href="{{ url_for('edit_staff') }}" class="btn btn-primary"><i class="fas fa-edit"></i>Edit Staff</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="aircraft-section" class="section">
+            <h2>Aircraft Management</h2>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('add_aircraft') }}" class="btn btn-primary"><i class="fas fa-plane"></i>Add Aircraft</a></li>
+                    <li><a href="{{ url_for('search_aircraft') }}" class="btn btn-primary"><i class="fas fa-search"></i>Search Aircraft</a></li>
+                    <li><a href="{{ url_for('delete_aircraft') }}" class="btn btn-primary"><i class="fas fa-trash-alt"></i>Delete Aircraft</a></li>
+                    <li><a href="{{ url_for('edit_aircraft') }}" class="btn btn-primary"><i class="fas fa-edit"></i>Edit Aircraft</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div id="journey-log-section" class="section">
+            <h2>Journey Log Management</h2>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('add_journey_log') }}" class="btn btn-primary"><i class="fas fa-plus"></i>Add Journey Log</a></li>
+                    <li><a href="{{ url_for('view_journey_log') }}" class="btn btn-primary"><i class="fas fa-search"></i>Search Journey Log</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="description">
+            <h2>Project Overview</h2>
+            <p>
+                This Airline Management System is designed to streamline the management of airline operations, focusing on staff, aircraft, and journey logs. It provides a user-friendly interface for managing staff records, including details like designation and leave entitlements. The system also allows for the addition, editing, and deletion of aircraft details, as well as maintaining journey logs for tracking flight operations. With features for searching and updating records, the system is built to improve efficiency and organization within airline management.
+            </p>
+            <p>
+                Developed by Safia Anjum
+            </p>
+        </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

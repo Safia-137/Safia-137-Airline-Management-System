@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Aircraft Details</title>
+    <!-- Bootstrap CSS for styling -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #00838f;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+        .btn-primary:hover {
+            background-color: #006064;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .form-control {
+            border-radius: 50px;
+            border-color: #00838f;
+        }
+        .form-control:focus {
+            border-color: #004d40;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        .alert {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Aircraft Details</h2>
+
+        <!-- Display flashed messages if any -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Aircraft ID Form -->
+        <form method="POST">
+            <div class="form-group">
+                <label for="aircraft_id">Aircraft ID:</label>
+                <input type="number" class="form-control" id="aircraft_id" name="aircraft_id" required value="{{ aircraft_details.Aircraft_Id if aircraft_details }}">
+            </div>
+        
+            <!-- If aircraft exists, show the rest of the form -->
+            {% if aircraft_details %}
+                <div class="form-group">
+                    <label for="aircraft_type">Aircraft Type:</label>
+                    <input type="text" class="form-control" id="aircraft_type" name="aircraft_type" value="{{ aircraft_details.Aircraft_Type }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="manufacturing_company">Manufacturing Company:</label>
+                    <input type="text" class="form-control" id="manufacturing_company" name="manufacturing_company" value="{{ aircraft_details.Manufacturing_Company }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="seating_capacity">Seating Capacity:</label>
+                    <input type="number" class="form-control" id="seating_capacity" name="seating_capacity" value="{{ aircraft_details.Seating_Capacity }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="hours_flown">Hours Flown:</label>
+                    <input type="number" class="form-control" id="hours_flown" name="hours_flown" value="{{ aircraft_details.Hours_Flown }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_service_date">Last Service Date:</label>
+                    <input type="date" class="form-control" id="last_service_date" name="last_service_date" value="{{ aircraft_details.Last_Service_Date }}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Aircraft</button>
+            {% endif %}
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

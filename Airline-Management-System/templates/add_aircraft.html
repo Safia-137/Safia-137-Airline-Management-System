@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Aircraft</title>
+    <!-- Bootstrap for styling -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS for additional styling -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #006064;
+        }
+        .btn-primary {
+            background-color: #00838f;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto; /* Center-align the button */
+        }
+        .btn-primary:hover {
+            background-color: #006064;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .form-control {
+            border-radius: 50px;
+            border-color: #00838f;
+        }
+        .form-control:focus {
+            border-color: #004d40;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        .alert {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fas fa-plane"></i> Add Aircraft</h2>
+
+        <!-- Display flashed messages if any -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Add Aircraft Form -->
+        <form method="POST">
+            <div class="form-group">
+                <label for="aircraft_type">Aircraft Type:</label>
+                <input type="text" class="form-control" id="aircraft_type" name="aircraft_type" required>
+            </div>
+            <div class="form-group">
+                <label for="manufacturing_company">Manufacturing Company:</label>
+                <input type="text" class="form-control" id="manufacturing_company" name="manufacturing_company" required>
+            </div>
+            <div class="form-group">
+                <label for="seating_capacity">Seating Capacity:</label>
+                <input type="number" class="form-control" id="seating_capacity" name="seating_capacity" required>
+            </div>
+            <div class="form-group">
+                <label for="hours_flown">Total Hours Flown:</label>
+                <input type="number" step="0.1" class="form-control" id="hours_flown" name="hours_flown" required>
+            </div>
+            <div class="form-group">
+                <label for="last_service_date">Last Service Date:</label>
+                <input type="date" class="form-control" id="last_service_date" name="last_service_date" required>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Aircraft</button>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
